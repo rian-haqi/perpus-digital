@@ -1,42 +1,60 @@
 <template>
-  <div class="container-fluid">
-    <div class="row my-5">
-      <div class="col-lg-6">
-        <nuxt-link to="/pengunjung/tambah">
-          <div class="card bg-pengunjung rounded-5">
-            <div class="card-body>
-              <h2>pengunjung</h2>
-            </div>
-          </div>
-        </nuxt-link>
+  <Header>
+    <div class="row p-3 d-flex justify-content-center align-items-center navbar">
+      <div class="col-lg-2">
+        <img src="@/assets/img/LOGO-SMK4.png" style="width: 100px;" alt="logo SMKN 4">
       </div>
-        
-    <div class="col-lg-6>
-      <nuxt-link to="/buku">
-        <div class="card bg-buku rounded-5">
-          <div class="card-body">
-            <h2>Cari Buku</h2>
-          </div>
-        </div>
-       </nuxt-link>
+      <div class="col-lg-7 text-center">
+        <h1>Perpus Digital</h1>
+        <address>
+          SMKN 4 Tasikmalaya
+          Jl.Depok,Sukamenak, Purbaratu
+        </address>
+      </div>
+      <div class="col-lg-2">
+        <img src="@/assets/img/LOGO-SMK4.png" style="width: 100px;" alt="logo SMKN 4">
       </div>
     </div>
-   </div>
+  </Header>
+  <div class="main">
+    <nuxt-link to="/pengunjung/tambah" class="text-decoration-none">
+      <div class="card bg-pengunjung rounded-5">
+        <div class="card-body text-center">
+          <h2>Isi Kunjungan</h2>
+          <h3>Click disini</h3>
+        </div>
+      </div>
+    </nuxt-link>
+  </div>
 </template>
 
 <style scoped>
-.card{
-    height: 250px;
-    box-shadow: 1px 1px 1px #424242;
+.navbar{
+  background-color: #DED2D2;
 }
-.card.bg-penunjung{
+.card{
+  width: 20rem;
+  height: 8rem;
+  background-color: #d3b5b58f;
+  padding: 8px;
+  color: blue;
+}
+
+/* .card.bg-penunjung{
     background-image: url('../assets/img/bg-home-kunjungan.jpeg');
     background-repeat: no-repeat;
-    background-position: center center:
+    background-position: center center;
     background-size: cover;
 }
- .card .bg-buku{
-    background: url('../assets/img/bg-home-cari-buku.jpg') no-repeat center center;
+.card .bg-buku{
+    background-image: url('~/assets/img/bg-home-cari-buku.jpg') no-repeat center center;
     background-size: cover;
+} */
+.main {
+  width: 100%;
+  min-height: 80vh;
+  background-image: url("~/assets/img/bg-home.png");
+  background-size: cover;
+  padding: 15% 5%;
 }
 </style>
