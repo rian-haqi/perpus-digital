@@ -17,7 +17,7 @@
     </div>
   </Header>
   <div class="main">
-    <nuxt-link to="/pengunjung/tambah" class="text-decoration-none">
+    <nuxt-link to="pengunjung/tambah" class="text-decoration-none">
       <div class="card bg-pengunjung rounded-5">
         <div class="card-body text-center">
           <h2>Isi Kunjungan</h2>
@@ -28,6 +28,10 @@
   </div>
 </template>
 
+<script setup>
+
+</script>
+
 <style scoped>
 .navbar{
   background-color: #DED2D2;
@@ -36,7 +40,7 @@
   width: 20rem;
   height: 8rem;
   background-color: #d3b5b58f;
-  padding: 8px;
+  padding: 8  px;
   color: blue;
 }
 
