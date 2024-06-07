@@ -1,12 +1,12 @@
 <template>
   <div class="content">
-    <div class="container-fluid">
+    <div class="container-fluid ">
       <header>
         <div class="row">
           <div class="col-lg-4">
             <img src="@/assets/img/LOGO-SMK4.png" alt="" class="float-end" style="width: 100px;">
           </div>
-          <div class="col-lg-8">
+          <div class="col-lg-8 ">
             <h1>Perpustakaan Digital</h1>
             <address>
               SMKN 4 Tasikmalaya<br>
@@ -135,5 +135,9 @@ onMounted(() => {
   background-color: blanchedalmond;
   padding: 9  px;
   color: blue;
+}
+
+.content{
+  background-color: cadetblue;
 }
 </style>
