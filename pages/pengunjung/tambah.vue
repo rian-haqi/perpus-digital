@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="container-fluid ">
+    <div class="container-fluid  ">
       <header>
         <div class="row">
           <div class="col-lg-4">
@@ -20,20 +20,20 @@
           <div class="col-lg-10">
             <div class="mb-3">
               <input v-model="form.nama" type="text" placeholder="NAMA..."
-                class="form-control formcontrol-lg rounded-5 border-dark">
+                class="form-control form-control-lg rounded-5 border-dark">
             </div>
             <div class="mb-3">
-              <select v-model="form.keanggotaan" class="form-control from-control-lg rounded-5 border-dark">
-                <option value="">KEANGGOTAAN...</option>
+              <select v-model="form.keanggotaan" class="form-control form-control-lg rounded-5 border-dark">
+                <option disabled value="">KEANGGOTAAN...</option>
                 <option v-for="(member, i) in members" :key="i" :value="member.id">{{ member.nama }}</option>
               </select>
             </div>
-            <div  v-if="form.keanggotaan == 1" class="mb-4">
+            <div v-if="form.keanggotaan == 1" class="mb-4">
               <div class="row">
                 <div class="col-md-4">
                   <select v-model="form.tingkat"
-                    class="form-control from-control-lg from-select rounded-5 mb-2 border-dark">
-                    <option value="">TINGKAT</option>
+                    class="form-control form-control-lg form-select rounded-5 mb-2 border-dark">
+                    <option disabled value="">TINGKAT</option>
                     <option value="X">X</option>
                     <option value="XI">XI</option>
                     <option value="XII">XII</option>
@@ -41,8 +41,8 @@
                 </div>
                 <div class="col-md-4">
                   <select v-model="form.jurusan"
-                    class="form-control from-control-lg from-select rounded-5 mb-2 border-dark">
-                    <option value="">JURUSAN</option>
+                    class="form-control form-control-lg form-select rounded-5 mb-2 border-dark">
+                    <option disabled value="">JURUSAN</option>
                     <option value="PPLG">PPLG</option>
                     <option value="TBSM">TBSM</option>
                     <option value="TOI">TOI</option>
@@ -52,8 +52,8 @@
                 </div>
                 <div class="col-md-4">
                   <select v-model="form.kelas"
-                    class="form-control from-control-lg from-select rounded-5 mb-2 border-dark">
-                    <option value="">KELAS</option>
+                    class="form-control form-control-lg form-select rounded-5 mb-2 border-dark">
+                    <option disabled value="">KELAS</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -62,11 +62,17 @@
                 </div>
               </div>
             </div>
-            <div class="mb-3">
-              <select v-model="form.keperluan" class="form-control form-control-lg from-select rounded-5 border-dark">
-                <option value="">KEPERLUAN...</option>
+            <div class="mb-4">
+              <select v-model="form.keperluan" class="form-control form-control-lg form-select rounded-5 border-dark">
+                <option disabled value="">KEPERLUAN...</option>
                 <option v-for="(item, i) in objectives" :key="i" :value="item.id">{{ item.nama }}</option>
+                <option :value="4">Lainnya</option>
               </select>
+            </div>
+            <div v-if="form.keperluan == 4" class="mb-2">
+              <div class="mb-3">
+                <input v-model="keperluanLain" type="text" class="form-control form-control-lg rounded-5 border-dark" placeholder="Tulis keperluan kamu...">
+              </div>
             </div>
           </div>
         </div>
@@ -75,13 +81,13 @@
         </div>
 
       </form>
-      <div class="card bg-pengunjung rounded-5">
-        <div class="card-body text-center">
-          <nuxt-link to="/" class="text-decoration-none">
+      <button class="back card bg-pengunjung rounded-5 justify-content-center">
+        <div class="card-body text-center ">
+          <nuxt-link to="/" class="btn text-decoration-none">
             <h3>Back To Home</h3>
           </nuxt-link>
-          </div>
         </div>
+      </button>
     </div>
   </div>
 </template>
@@ -101,9 +107,18 @@ const form = ref({
   kelas: "",
   keperluan: "",
 })
+const keperluanLain = ref('')
 
 const KirimData = async () => {
-  const { error } = await supabase.from('pengunjung').insert([form.value])
+  const { error } = await supabase.from('pengunjung').insert({
+    nama: form.value.nama,
+    keanggotaan: form.value.keanggotaan,
+    tingkat: form.value.tingkat,
+    jurusan: form.value.jurusan,
+    kelas: form.value.kelas,
+    keperluan: (keperluanLain.value) ? null : form.value.keperluan,
+    keperluan_lain: keperluanLain.value
+  })
   if (error) throw error
   else navigateTo('/pengunjung')
 }
@@ -129,15 +144,27 @@ onMounted(() => {
 
 
 <style scoped>
-.card{
+.card {
   width: 10rem;
   height: 6rem;
-  background-color: blanchedalmond;
-  padding: 9  px;
+  background-color: rgb(255, 234, 214);
+  padding: 9 px;
   color: blue;
 }
 
-.content{
+.back {
+  position: relative;
+  margin-left: 45%;
+  font-size: 20px;
+  margin-top: 55px;
+}
+
+.back h3 {
+  font-size: 20px;
+}
+
+.container-fluid {
   background-color: cadetblue;
+  height: 100vh;
 }
 </style>

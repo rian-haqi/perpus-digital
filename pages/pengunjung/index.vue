@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid ">
 
-    <div class="row d-flex justify-center">
+    <div class="row d-flex justify-content-center">
       <div class="col-lg-5 text-center p-3">
         <h2>Perpus Digital</h2>
         SMKN 4 Tasikmalaya
@@ -9,11 +9,11 @@
         <address>
         </address>
       </div>
-      <div class="col-lg-2">
-        <img src="@/assets/img/LOGO-SMK4.png" style="width: 100px;" alt="logo SMKN 4">
+      <div class="col-auto">
+        <img src="@/assets/img/LOGO-SMK4.png" style="width: 100px; background-position: center;" alt="logo SMKN 4 ">
       </div>
-      <div class="col-lg-5">
-        <h2 class="row text-center my-3 ms-4">RIWAYAT KUNJUNGAN</h2>
+      <div class="col-lg-5 text-center p-3">
+        <h2>RIWAYAT KUNJUNGAN</h2>
       </div>
     </div>
 
@@ -24,9 +24,12 @@
       </nuxt-link>
       <input v-model="keyword" class="fani col-6 form-control form-control-lg rounded-5 border-dark  mt-2 "
         placeholder="🔍 Search Riwayat Kunjungan..." style="width: 30rem;" @input="getPengunjung" />
-        <h4>Jumlah Pengunjung {{visitors.length }}</h4>
-
+      <nuxt-link to="/pengunjung/tambah">
+        <button type="button" class="btn btn-primary btn-lg my-4 rounded-5 ">KEMBALI</button>
+      </nuxt-link>
+      <h4>Jumlah Pengunjung {{ visitors.length }}</h4>
     </div>
+
     <div class="table-responsive">
       <table class="table">
         <thead>
@@ -45,15 +48,12 @@
             <td>{{ visitor.nama }}</td>
             <td>{{ visitor.keanggotaan.nama }}</td>
             <td>{{ visitor.tanggal }}, {{ visitor.jam.split(".")[0] }}</td>
-            <td>{{ visitor.keperluan.nama }}</td>
+            <td>{{ visitor.keperluan?.nama || visitor.keperluan_lain }}</td>
             <td>{{ visitor.tingkat }}-{{ visitor.jurusan }}-{{ visitor.kelas }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <nuxt-link to="/pengunjung/tambah">
-      <button type="button" class="btn btn-primary btn-lg mt-4">KEMBALI</button>
-    </nuxt-link>
   </div>
 </template>
 
@@ -88,4 +88,3 @@ address {
 
 }
 </style>
-
